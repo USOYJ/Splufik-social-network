@@ -30,6 +30,7 @@ const UserController = {
       const userData = await User.create(req.body);
       res.status(201).json(userData);
     } catch (err) {
+      console.log(err)
       res.status(500).json(err);
     }
   },

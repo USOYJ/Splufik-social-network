@@ -1,4 +1,3 @@
-// Import the necessary dependencies and controllers
 const router = require('express').Router();
 const {
   getAllUsers,
