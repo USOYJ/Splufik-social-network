@@ -18,7 +18,8 @@
   "homepage": "https://github.com/USOYJ/Splufik-social-network#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "mongoose": "^7.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^7.5.2",
     "nodemon": "^3.0.1"
   }
 }
