@@ -1,4 +1,5 @@
 const { Thought } = require('../models');
+const { Types } = require('mongoose');
 
 const ThoughtController = {
   // Get all thoughts
