@@ -45,7 +45,7 @@ Splufik-social-network API allows users to perform CRUD operations on social net
 - Dynamic JavaScript
 
 ## Credit
-Austin Cuddeback Social Network API Instruction video
+Austin Cuddeback Social Network API Instruction video on youtube
 
 ## Author
 Oyindamola Jongbo
