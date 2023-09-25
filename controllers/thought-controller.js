@@ -1,8 +1,6 @@
 const { Thought } = require('../models');
-const { Types } = require('mongoose');
 
 const ThoughtController = {
-  // Get all thoughts
   getAllThoughts: async (req, res) => {
     try {
       const thoughts = await Thought.find();
@@ -12,7 +10,6 @@ const ThoughtController = {
     }
   },
 
-  // Get thought by ID
   getThoughtById: async (req, res) => {
     try {
       const thought = await Thought.findById(req.params.thoughtId);
@@ -25,9 +22,13 @@ const ThoughtController = {
     }
   },
 
-  // Create thought
   createThought: async (req, res) => {
     try {
+      const { thoughtText, username } = req.body;
+      if (!thoughtText || !username) {
+        return res.status(400).json({ message: 'Missing required fields' });
+      }
+
       const thought = await Thought.create(req.body);
       res.status(201).json(thought);
     } catch (err) {
@@ -35,7 +36,6 @@ const ThoughtController = {
     }
   },
 
-  // Delete thought
   deleteThought: async (req, res) => {
     try {
       const thought = await Thought.findByIdAndDelete(req.params.thoughtId);
@@ -48,24 +48,29 @@ const ThoughtController = {
     }
   },
 
-  // Update thought by ID
   updateThoughtById: async (req, res) => {
     try {
+      const { thoughtText, username } = req.body;
+      if (!thoughtText || !username) {
+        return res.status(400).json({ message: 'Missing required fields' });
+      }
+
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
         req.body,
         { new: true }
       );
+
       if (!thought) {
         return res.status(404).json({ message: 'Thought not found' });
       }
+
       res.json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
   },
 
-  // Create reaction
   createReaction: async (req, res) => {
     try {
       const thought = await Thought.findByIdAndUpdate(
@@ -82,7 +87,6 @@ const ThoughtController = {
     }
   },
 
-  // Delete reaction
   deleteReaction: async (req, res) => {
     try {
       const thought = await Thought.findByIdAndUpdate(
@@ -101,4 +105,5 @@ const ThoughtController = {
 };
 
 module.exports = ThoughtController;
+
 
