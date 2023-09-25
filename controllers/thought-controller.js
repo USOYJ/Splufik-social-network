@@ -61,7 +61,7 @@ const ThoughtController = {
 
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
-        { $set: req.body }, // Use $set to update fields
+        { $set: req.body },
         { new: true }
       );
 
@@ -80,7 +80,7 @@ const ThoughtController = {
     try {
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
-        { $push: { reactions: req.body } }, // Use $push to add reactions
+        { $push: { reactions: req.body } },
         { runValidators: true, new: true }
       );
       if (!thought) {
@@ -97,8 +97,8 @@ const ThoughtController = {
     try {
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
-        { $pull: { reactions: { reactionId: req.params.reactionId } } }, // Use $pull to remove reactions
-        { runValidators: true, new: true }
+        { $pull: req.params.reactionId },
+        { new: true }
       );
       if (!thought) {
         return res.status(404).json({ message: 'Thought not found' });
