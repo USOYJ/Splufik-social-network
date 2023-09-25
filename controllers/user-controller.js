@@ -13,7 +13,7 @@ const UserController = {
 
   getUserById: async (req, res) => {
     try {
-      const userData = await User.findById(req.params.id); 
+      const userData = await User.getUserById(req.params.userId); 
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -36,8 +36,9 @@ const UserController = {
 
   updateUserById: async (req, res) => {
     try {
+      const {id} = req.params;
       const userData = await User.findOneAndUpdate(
-        { _id: req.params.userId},
+        { _id: id},
         { $set: req.body }, 
         { new: true }
       );
@@ -55,7 +56,7 @@ const UserController = {
 
   deleteUserById: async (req, res) => {
     try {
-      const userData = await User.findOneAndDelete({ _id: req.params.id });
+      const userData = await User.findOneAndDelete({ _id: req.params.userId});
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
