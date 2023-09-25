@@ -37,7 +37,7 @@ const UserController = {
   updateUserById: async (req, res) => {
     try {
       const userData = await User.findOneAndUpdate(
-        { _id: req.params.userId }, // Corrected to use userId
+        { _id: req.params.userId }, 
         { $set: req.body }, 
         { new: true }
       );
@@ -55,7 +55,7 @@ const UserController = {
 
   deleteUserById: async (req, res) => {
     try {
-      const userData = await User.findOneAndDelete({ _id: req.params.userId }); // Corrected to use userId
+      const userData = await User.findOneAndDelete({ _id: req.params.userId }); 
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -69,8 +69,8 @@ const UserController = {
   addFriend: async (req, res) => {
     try {
       const userData = await User.findOneAndUpdate(
-        { _id: req.params.id }, 
-        { $addToSet: { friends: req.body.friendId || req.params.friendId } },
+        { _id: req.params.friendId }, 
+        { $set: req.body }, 
         { new: true }
       );
       if (!userData) {
@@ -86,8 +86,8 @@ const UserController = {
   removeFriend: async (req, res) => {
     try {
       const userData = await User.findOneAndUpdate(
-        { _id: req.params.id }, 
-        { $pull: { friends: req.params.friendId } },
+        { _id: req.params.friendId }, 
+        { $pull: req.body }, 
         { new: true }
       );
 
