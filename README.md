@@ -22,9 +22,13 @@ Splufik-social-network API allows users to perform CRUD operations on social net
 
 
 ## Screenshots:
+<img width="1401" alt="Screenshot 2023-09-25 at 6 08 29 PM" src="https://github.com/USOYJ/Splufik-social-network/assets/125850331/e50eb1b9-fb93-41a1-bd17-e7219e124684">
 
+<img width="1440" alt="Screenshot 2023-09-25 at 6 10 04 PM" src="https://github.com/USOYJ/Splufik-social-network/assets/125850331/4d5226a6-340d-4943-8a1c-fdd6873ca0c1">
 
+<img width="1433" alt="Screenshot 2023-09-25 at 6 09 11 PM" src="https://github.com/USOYJ/Splufik-social-network/assets/125850331/4a1d85b6-c8f4-46c0-bf7f-7172d49909ca">
 
+<img width="1418" alt="Screenshot 2023-09-25 at 6 09 30 PM" src="https://github.com/USOYJ/Splufik-social-network/assets/125850331/b1fc3cf7-f92e-4451-8405-4e274b0e511f">
 
 
 
