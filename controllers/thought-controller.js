@@ -6,6 +6,7 @@ const ThoughtController = {
       const thoughts = await Thought.find();
       res.json(thoughts);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
@@ -18,6 +19,7 @@ const ThoughtController = {
       }
       res.json(thought);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
@@ -32,6 +34,7 @@ const ThoughtController = {
       const thought = await Thought.create(req.body);
       res.status(201).json(thought);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
@@ -44,6 +47,7 @@ const ThoughtController = {
       }
       res.status(200).json(thought);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
@@ -57,7 +61,7 @@ const ThoughtController = {
 
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
-        req.body,
+        { $set: req.body }, // Use $set to update fields
         { new: true }
       );
 
@@ -67,6 +71,7 @@ const ThoughtController = {
 
       res.json(thought);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
@@ -75,7 +80,7 @@ const ThoughtController = {
     try {
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
-        { $addToSet: { reactions: req.body } },
+        { $push: { reactions: req.body } }, // Use $push to add reactions
         { runValidators: true, new: true }
       );
       if (!thought) {
@@ -83,6 +88,7 @@ const ThoughtController = {
       }
       res.json(thought);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
@@ -91,7 +97,7 @@ const ThoughtController = {
     try {
       const thought = await Thought.findByIdAndUpdate(
         req.params.thoughtId,
-        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } }, // Use $pull to remove reactions
         { runValidators: true, new: true }
       );
       if (!thought) {
@@ -99,11 +105,13 @@ const ThoughtController = {
       }
       res.json(thought);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     }
   },
 };
 
 module.exports = ThoughtController;
+
 
 
