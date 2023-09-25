@@ -13,7 +13,7 @@ const UserController = {
 
   getUserById: async (req, res) => {
     try {
-      const userData = await User.getUserById(req.params.userId); 
+      const userData = await User.findById(req.params.userId);
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -36,9 +36,8 @@ const UserController = {
 
   updateUserById: async (req, res) => {
     try {
-      const {id} = req.params;
       const userData = await User.findOneAndUpdate(
-        { _id: id},
+        { _id: req.params.userId }, // Corrected to use userId
         { $set: req.body }, 
         { new: true }
       );
@@ -56,7 +55,7 @@ const UserController = {
 
   deleteUserById: async (req, res) => {
     try {
-      const userData = await User.findOneAndDelete({ _id: req.params.userId});
+      const userData = await User.findOneAndDelete({ _id: req.params.userId }); // Corrected to use userId
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -111,6 +110,7 @@ const UserController = {
 };
 
 module.exports = UserController;
+
 
 
 

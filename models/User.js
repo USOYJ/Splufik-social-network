@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-
 const userSchema = new Schema(
   {
     username: {
@@ -15,7 +14,6 @@ const userSchema = new Schema(
       unique: true,
       validate: {
         validator: function (v) {
-        
           return /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(v);
         },
       },
@@ -37,20 +35,16 @@ const userSchema = new Schema(
     toJSON: {
       virtuals: true, 
     },
-    _id: false,  
+    _id: true, // Corrected to set _id to true
   }
 );
-
 
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
-
 const User = model('User', userSchema);
 
 module.exports = User;
-
-
 
 
